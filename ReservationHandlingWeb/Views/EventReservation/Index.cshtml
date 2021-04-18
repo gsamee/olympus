@@ -1,0 +1,92 @@
+﻿@model IEnumerable<ReservationHandlingWeb.Models.UserMain>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h4>Event Registration</h4>
+<hr />
+<p>
+    <a type="button" class="btn btn-primary" asp-action="Create">Create New</a>
+</p>
+<table id="DataTable" class="table table-bordered" style="width:100%;">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.EventType)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SetUp)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.HallID)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.EventDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InviteDate)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Remarks)
+                </th>*@
+            <th style="border-right: none;" class="no-sort"></th>
+            <th style="border-right: none;" class="no-sort"></th>
+            <th class="no-sort"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.EventType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SetUp)
+                    </td>*@
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.HallID)
+                    </td>*@
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.EventDate)*@
+                    @Html.Raw(item.EventDate.ToString("yyyy-MM-dd"))
+                </td>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.InviteDate)*@
+                    @Html.Raw(item.InviteDate.ToString("yyyy-MM-dd"))
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Remarks)
+                    </td>*@
+                <td style="text-align:center">
+                    <a asp-action="Edit" asp-route-id="@item.ID"><i class="fas fa-edit"></i></a>
+                </td>
+                <td style="text-align:center">
+                    <a asp-action="Details" asp-route-id="@item.ID"><i class="far fa-file-alt"></i></a>
+                </td>
+                <td style="text-align:center" s>
+                    <a asp-action="Delete" asp-route-id="@item.ID"><i class="fas fa-trash"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

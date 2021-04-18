@@ -1,0 +1,3 @@
+UserID,Name,NoOfMembers,SeatNo,Meal1,Meal2,Meal3,IsVeg,Email,IsInvitationSent,IsReminderSent
+3,testmem002,1,2,TRUE,TRUE,FALSE,FALSE,testmem002@gmail.com,FALSE,FALSE
+3,testmem003,1,3,TRUE,FALSE,FALSE,TRUE,testmem003@gmail.com,FALSE,FALSE

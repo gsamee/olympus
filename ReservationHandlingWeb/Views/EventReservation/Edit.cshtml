@@ -1,0 +1,85 @@
+﻿@model ReservationHandlingWeb.ViewModels.EventRegistrationVM
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h4>Event Registration</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="UserMain.ID" />
+            <div class="form-group">
+                <label asp-for="UserMain.Name" class="control-label"></label>
+                <input asp-for="UserMain.Name" class="form-control" />
+                <span asp-validation-for="UserMain.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserMain.Phone" class="control-label"></label>
+                <input asp-for="UserMain.Phone" class="form-control" />
+                <span asp-validation-for="UserMain.Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserMain.Email" class="control-label"></label>
+                <input asp-for="UserMain.Email" class="form-control" />
+                <span asp-validation-for="UserMain.Email" class="text-danger"></span>
+            </div>
+            @*<div class="form-group" style="display:none;">
+                    <label asp-for="UserMain.EventTypeID" class="control-label"></label>
+                    <input asp-for="UserMain.EventTypeID" class="form-control" />
+                    <span asp-validation-for="UserMain.EventTypeID" class="text-danger"></span>
+                </div>
+                <div class="form-group" style="display:none;">
+                    <label asp-for="UserMain.SetUpID" class="control-label"></label>
+                    <input asp-for="UserMain.SetUpID" class="form-control" />
+                    <span asp-validation-for="UserMain.SetUpID" class="text-danger"></span>
+                </div>*@
+            @*<div class="form-group" style="display:none;">
+                    <label asp-for="UserMain.HallID" class="control-label"></label>
+                    <input asp-for="UserMain.HallID" class="form-control" />
+                    <span asp-validation-for="UserMain.HallID" class="text-danger"></span>
+                </div>*@
+            <div class="form-group">
+                <label asp-for="UserMain.EventTypeID" class="control-label"></label>
+                <select asp-for="UserMain.EventTypeID" asp-items="@Model.EventTypeList" class="form-control"></select>
+                <span asp-validation-for="UserMain.EventTypeID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserMain.SetUpID" class="control-label"></label>
+                <select asp-for="UserMain.SetUpID" asp-items="@Model.EventSetupList" class="form-control"></select>
+                <span asp-validation-for="UserMain.SetUpID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserMain.HallID" class="control-label"></label>
+                <select asp-for="UserMain.HallID" asp-items="@Model.HallDetailList" class="form-control"></select>
+                <span asp-validation-for="UserMain.HallID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserMain.EventDate" class="control-label"></label>
+                <input type="date" asp-for="UserMain.EventDate" class="form-control" />
+                <span asp-validation-for="UserMain.EventDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserMain.InviteDate" class="control-label"></label>
+                <input type="date" asp-for="UserMain.InviteDate" class="form-control" />
+                <span asp-validation-for="UserMain.InviteDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserMain.Remarks" class="control-label"></label>
+                <textarea asp-for="UserMain.Remarks" class="form-control"></textarea>
+                <span asp-validation-for="UserMain.Remarks" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a type="button" class="btn btn-secondary" asp-action="Index">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,55 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+<h4>Invitation</h4>
+<hr />
+<p>
+    @*@using (Html.BeginForm("Upload", "User", FormMethod.Post))
+        {*@
+
+    <input class="btn btn-primary" value="Invite" id="btnInvite" />
+
+    <input class="btn btn-info" value="Remind" id="btnRemind" />
+
+    @*}*@
+</p>
+
+<script>
+    $("#btnInvite").click(function () {
+        $.ajax({
+            type: "POST",
+            dataType: 'JSON',
+            url: '/Invitation/Invite/',
+            cache: false,
+            contentType: 'application/json',
+            success: function (response) {
+                alert('Successfully invited.');
+            },
+            error: function (response) {
+                alert('Error - ' + response);
+            }
+
+        });
+
+    });
+
+    $("#btnRemind").click(function () {
+        $.ajax({
+            type: "POST",
+            dataType: 'JSON',
+            url: '/Invitation/Remind/',
+            cache: false,
+            contentType: 'application/json',
+            success: function (response) {
+                alert('Successfully invited.');
+            },
+            error: function (response) {
+                alert('Error - ' + response);
+            }
+
+        });
+
+    });
+
+</script>

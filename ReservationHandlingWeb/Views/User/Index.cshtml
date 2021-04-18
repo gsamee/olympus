@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+<h4>Bulk Upload</h4>
+<hr />
+<p>
+    @*@using (Html.BeginForm("Upload", "User", FormMethod.Post))
+        {*@
+    <input type="file" value="FilePath" name="filepath" id="filee" />
+    <input type="submit" class="btn btn-primary" value="Upload" id="btnUpload" />
+
+    @*}*@
+</p>
+
+<script>
+    $(document).ready(function () {
+        $('#NavBar').hide();
+        $('#FootAbt').hide();
+    });
+
+    $("#btnUpload").click(function () {
+        $.ajax({
+            type: "POST",
+            dataType: 'JSON',
+            url: '/User/Upload/',
+            cache: false,
+            contentType: 'application/json',
+            success: function (response) {
+                alert('Successfully uploaded.');
+            },
+            error: function (response) {
+                alert('Error - ' + response);
+            }
+        });
+
+    });
+
+</script>
