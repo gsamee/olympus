@@ -200,5 +200,75 @@ namespace ReservationHandlingWeb.Controllers
         {
             return _context.UserMain.Any(e => e.ID == id);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> AttendanceMark(int id)
+        {
+            try
+            {
+                Attendance attendance = new Attendance()
+                {
+                    MemberID = id,
+                    Status = true,
+                    InTime = DateTime.Now
+                };
+
+                if (!await _context.Attendance.AnyAsync(x => x.MemberID == id))
+                {
+                    await _context.Attendance.AddAsync(attendance);
+                    await _context.SaveChangesAsync();
+                    return new JsonResult(new { success = true });
+                }
+                else
+                {
+                    return new JsonResult(new { success = false, responseText = "You have already scanned!" });
+                }
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult(new { success = false, responseText = ex.Message });
+            }
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> GetMealDetails(int id)
+        {
+            try
+            {
+                var data = await _context.SP_MealDet.FromSqlRaw("SP_GetMealDetails {0}", id).ToListAsync();
+                //var MealList = data.Select(x => new { x.Description });
+                var txt = "";
+                
+                if (data != null)
+                {
+                    int c = 0;
+                    foreach (var item in data)
+                    {
+                        c++;
+                        if (item.Name != "ZIsVeg")
+                        {
+                            if (c == 1)
+                            {
+                                txt += item.Description;
+                            }
+                            else
+                            {
+                                txt += ", " + item.Description;
+                            }
+                        }
+                        else
+                        {
+                            txt += " (" + item.Description + ")";
+                        }
+                    }
+                }
+                return new JsonResult(new { success = true, responseText = txt });
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult(new { success = false, responseText = ex.Message });
+            }
+        }
     }
 }

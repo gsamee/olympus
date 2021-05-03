@@ -16,6 +16,11 @@ namespace ReservationHandlingWeb.Data
         public DbSet<EventType> EventType { get; set; }
         public DbSet<EventSetup> EventSetup { get; set; }
         public DbSet<MemberDetails> MemberDetails { get; set; }
+        public DbSet<Attendance> Attendance { get; set; }
+        public DbSet<SP_MealDet> SP_MealDet { get; set; }
+
+        
+
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -25,6 +30,8 @@ namespace ReservationHandlingWeb.Data
             modelBuilder.Entity<EventType>().ToTable("EventType").HasKey("ID");
             modelBuilder.Entity<EventSetup>().ToTable("EventSetup").HasKey("ID");
             modelBuilder.Entity<MemberDetails>().ToTable("MemberDetails").HasKey("ID");
+            modelBuilder.Entity<Attendance>().ToTable("Attendance").HasKey("ID");
+            modelBuilder.Entity<SP_MealDet>().HasNoKey();
         }
 
         public void DeleteMembers(int uid)

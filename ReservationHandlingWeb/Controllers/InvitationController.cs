@@ -35,7 +35,7 @@ namespace ReservationHandlingWeb.Controllers
         [HttpPost]
         public async Task<IActionResult> Remind()
         {
-            await CS.SendInvitation();
+            await CS.SendInvitation(true);
 
             return new JsonResult(new { success = true });
         }

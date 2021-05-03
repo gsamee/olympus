@@ -60,10 +60,12 @@ namespace ReservationHandlingWeb.Services
                         if (IsRemind)
                         {
                             mm.Subject = "Reminder for " + list.Name + " " + list.EventType.Type + " Event";
+                            item.IsReminderSent = true;
                         }
                         else
                         {
                             mm.Subject = "Invitation for " + list.Name + " " + list.EventType.Type + " Event";
+                            item.IsInvitationSent = true;
                         }
 
                         string mailbody = "Dear " + item.Name + ", <br/><html><body><p>Your are invited to participate the <b>" + list.Name + " " + list.EventType.Type + "</b> event on <b>" + list.EventDate.ToString("dddd, dd MMMM yyyy hh:mm tt") + "</b> at <b>" + list.HallDetail.Name + "</b> on BMICH.</p><h3>QR Code</h3><img src=\"cid:Email\"  width='200' height='200'><br><h3>Scaning steps:</h3><p style='color:DodgerBlue'>1.produce the qr code in registration desk</p><p style='color:DodgerBlue'>2.get the seat no and meal tokens printed there</p><br><p>Best Regards!</p><p>" + list.Name + "</p></body></html>";
@@ -88,7 +90,7 @@ namespace ReservationHandlingWeb.Services
                         smtp.Credentials = NetworkCred;
                         smtp.Port = 587;
                         smtp.Send(mm);
-
+                                                
                         _context.Update(item);
                         await _context.SaveChangesAsync();
                     }
