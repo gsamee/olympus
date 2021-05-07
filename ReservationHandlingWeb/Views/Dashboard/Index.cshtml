@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<h4>Event Dashboard</h4>
+<hr />
+
+<div class="row">
+    <div class="col-md-2">
+        <div class="form-group">
+            <label class="control-label">Event ID</label>
+            <div style="display: -webkit-box">
+                <input type="text" id="EventID" class="form-control" /> &nbsp
+                <button type="button" class="btn btn-primary" id="btnViewDashboard">View</button>
+            </div>
+           
+            <span id="ValidationEventID" class="text-danger"></span>
+
+        </div>
+
+    </div>
+    <div class="form-group">
+        <div class="form-group">
+            <br /><br />
+            
+        </div>
+    </div>
+</div>
+<table id="DashTable" class="table table-bordered" style="width:100%;">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>No Of Members</th>
+            <th>Seat No</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+</table>
+
+
+<script>
+    $("#btnViewDashboard").click(function () {
+
+        var t = $('#DashTable').dataTable({
+            "destroy": true,
+            "processing": true,
+            "serverSide": false,
+            "filter": true,
+            "order": [[0, "asc"]],
+            "lengthMenu": [5, 10, 25, 50, 100],
+            "ajax": {
+                "url": '/Dashboard/Dashboard?id=' + document.getElementById("EventID").value,
+                "dataType": "json",
+                "dataSrc": "",
+                "type": "GET",
+                "cache": false,
+                "contentType": "application/json; charset=utf-8"
+
+            },
+            "columns": [
+                { "data": "id", "name": "ID", "autoWidth": true },
+                { "data": "name", "name": "Name", "autoWidth": true },
+                { "data": "noOfMembers", "name": "NoOfMembers", "autoWidth": true },
+                { "data": "seatNo", "name": "SeatNo", "autoWidth": true },
+                { "data": "attStatus", "name": "AttStatus", "autoWidth": true },
+            ]
+        });
+
+    });
+
+    function abc() {
+
+    }
+
+</script>

@@ -40,13 +40,15 @@ namespace ReservationHandlingWeb.Services
             if (MsgType == "CSV")
             {
                 mailMessage.Subject = "Member Details";
-                mailMessage.Body = "<p>Please fill the attached .csv file and upload through following link.</br><a href='https://localhost:44301/User'>Link</a><br>User ID - " + ID + "<br><br>" +
+                mailMessage.Body = "<p>Please fill the attached .csv file and upload through following link.<br><a href='https://localhost:44301/User'>Link</a><br>Event ID - " + ID + "<br>Seating plan also attached<br><br> " +
                     "Best Regurds,<br>BMICH Reservation Handling.</p>";
             }
             mailMessage.To.Add(toAdd);
 
             var attachment = new Attachment(@"wwwroot\Resources\MemberDetails.csv", new ContentType("text/csv"));
+            var attachment2 = new Attachment(@"wwwroot\Resources\SeatingPlan.png", new ContentType("image/png"));
             mailMessage.Attachments.Add(attachment);
+            mailMessage.Attachments.Add(attachment2);
 
             smtpClient.Send(mailMessage);
 

@@ -18,8 +18,10 @@ namespace ReservationHandlingWeb.Data
         public DbSet<MemberDetails> MemberDetails { get; set; }
         public DbSet<Attendance> Attendance { get; set; }
         public DbSet<SP_MealDet> SP_MealDet { get; set; }
-
+        public DbSet<SP_Dashboard> SP_Dashboard { get; set; }
         
+
+
 
 
 
@@ -32,6 +34,7 @@ namespace ReservationHandlingWeb.Data
             modelBuilder.Entity<MemberDetails>().ToTable("MemberDetails").HasKey("ID");
             modelBuilder.Entity<Attendance>().ToTable("Attendance").HasKey("ID");
             modelBuilder.Entity<SP_MealDet>().HasNoKey();
+            modelBuilder.Entity<SP_Dashboard>().HasNoKey();
         }
 
         public void DeleteMembers(int uid)

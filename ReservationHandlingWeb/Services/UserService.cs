@@ -45,8 +45,8 @@ namespace ReservationHandlingWeb.Services
                     member.Meal3 = table.Rows[i][6].ToString().ToUpper().Equals("TRUE");
                     member.IsVeg = table.Rows[i][7].ToString().ToUpper().Equals("TRUE");
                     member.Email = table.Rows[i][8].ToString();
-                    member.IsInvitationSent = table.Rows[i][9].ToString().ToUpper().Equals("TRUE");
-                    member.IsReminderSent = table.Rows[i][10].ToString().ToUpper().Equals("TRUE");
+                    //member.IsInvitationSent = table.Rows[i][9].ToString().ToUpper().Equals("TRUE");
+                    //member.IsReminderSent = table.Rows[i][10].ToString().ToUpper().Equals("TRUE");
 
                     if (i == 0)
                     {
